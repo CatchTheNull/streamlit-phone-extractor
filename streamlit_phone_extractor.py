@@ -6,8 +6,8 @@ from PIL import Image
 import pandas as pd
 import re
 
-st.title("📞 Extract Phone Numbers from Images")
-st.write("Upload images with phone numbers, and I'll extract them for you!")
+st.title("📞 Извлекает номера из Скриншотов telegram каналов")
+st.write("Загружайте изображения с номерами телефонов, и я извлеку их для вас!")
 
 uploaded_files = st.file_uploader("Upload Images", type=["png", "jpg", "jpeg"], accept_multiple_files=True)
 
