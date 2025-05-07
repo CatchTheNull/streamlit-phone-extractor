@@ -1,5 +1,3 @@
-import pytesseract
-pytesseract.pytesseract.tesseract_cmd = '/usr/bin/tesseract'
 import streamlit as st
 import pytesseract
 from PIL import Image
@@ -12,15 +10,25 @@ st.write("Загружайте изображения с номерами тел
 uploaded_files = st.file_uploader("Upload Images", type=["png", "jpg", "jpeg"], accept_multiple_files=True)
 
 if uploaded_files:
+    st.subheader("Загруженные файлы")
+    for uploaded_file in uploaded_files:
+        st.write(f"- {uploaded_file.name}")
+
     phone_numbers = []
 
-    for uploaded_file in uploaded_files:
+    progress_bar = st.progress(0)
+    total_files = len(uploaded_files)
+
+    for i, uploaded_file in enumerate(uploaded_files):
         image = Image.open(uploaded_file)
         text = pytesseract.image_to_string(image)
 
         # Extracting phone numbers using regex
         phones = re.findall(r"\+7\s?\d{3}\s?\d{3}-\d{2}-\d{2}", text)
         phone_numbers.extend(phones)
+
+        # Updating progress bar
+        progress_bar.progress((i + 1) / total_files)
 
     # Removing duplicates
     unique_numbers = list(set(phone_numbers))
