@@ -34,10 +34,10 @@ if uploaded_files:
     unique_numbers = list(set(phone_numbers))
 
     # Displaying extracted phone numbers
-    st.subheader("Extracted Phone Numbers")
+    st.subheader("Выгруженные номера")
     df_phones = pd.DataFrame({'Phone Numbers': unique_numbers})
     st.dataframe(df_phones)
 
     # Download options
     csv = df_phones.to_csv(index=False).encode('utf-8')
-    st.download_button(label="Download as CSV", data=csv, file_name='extracted_phone_numbers.csv', mime='text/csv')
+    st.download_button(label="Сохранить вCSV", data=csv, file_name='extracted_phone_numbers.csv', mime='text/csv')
