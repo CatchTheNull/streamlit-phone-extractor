@@ -43,7 +43,7 @@ if uploaded_files:
 
     # Отображение извлеченных номеров телефонов
     st.subheader("Выгруженные номера")
-    df_phones = pd.DataFrame({'Phone Numbers': unique_numbers})
+    df_phones = pd.DataFrame({'PhoneNumbers': unique_numbers})
     st.dataframe(df_phones)
 
     # Сохранение данных в CSV
